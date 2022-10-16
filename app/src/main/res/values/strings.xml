@@ -1,3 +1,15 @@
 <resources>
-    <string name="app_name">Unscramble</string>
+    <string name="app_name">Расшыфруй</string>
+    <string name="unscramble_word">Расшыфруйце</string>
+    <string name="instructions">Расшыфруйце слова, выкарыстоўваючы ўсе літары.</string>
+    <string name="skip">Прапусціць</string>
+    <string name="submit">Далей</string>
+    <string name="score">Адзнака: %d</string>
+    <string name="word_count">%d з %d слоў</string>
+    <string name="enter_your_word">Увядзіце сваё слова</string>
+    <string name="congratulations">Віншуем!</string>
+    <string name="you_scored">"Вы набралі: %d"</string>
+    <string name="exit">Выхад</string>
+    <string name="play_again">Гуляць зноў</string>
+    <string name="try_again">Паспрабуйце яшчэ!</string>
 </resources>
