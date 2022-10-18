@@ -18,9 +18,11 @@ class GameViewModel : ViewModel() {
     val currentScrambledWord: LiveData<String>
         get() = _currentScrambledWord
 
+    private var hints = 0
+
 
     private var wordsList = mutableListOf<String>()
-    private lateinit var currentWord: String
+    private lateinit var currentWord: Question
 
     init {
         getNextWord()
@@ -28,18 +30,18 @@ class GameViewModel : ViewModel() {
 
     private fun getNextWord() {
         currentWord = allWordsList.random()
-        val scrambled = currentWord.toCharArray()
+        val scrambled = currentWord.word.toCharArray()
         scrambled.shuffle()
 
-        while (String(scrambled).equals(currentWord, false)) {
+        while (String(scrambled).equals(currentWord.word, false)) {
             scrambled.shuffle()
         }
-        if (wordsList.contains(currentWord)) {
+        if (wordsList.contains(currentWord.word)) {
             getNextWord()
         } else {
             _currentScrambledWord.value = String(scrambled)
             _currentWordCount.value = (_currentWordCount.value)?.inc()
-            wordsList.add(currentWord)
+            wordsList.add(currentWord.word)
         }
     }
 
@@ -56,7 +58,7 @@ class GameViewModel : ViewModel() {
     }
 
     fun isUserWordCorrect(playerWord: String): Boolean {
-        if (playerWord.equals(currentWord, true)) {
+        if (playerWord.equals(currentWord.word, true)) {
             increaseScore()
             return true
         }
@@ -70,4 +72,11 @@ class GameViewModel : ViewModel() {
         getNextWord()
     }
 
+    fun getHint():String {
+        when(currentWord.hints) {
+            0 -> { currentWord.hints++; return currentWord.firstLetterHint }
+            1 -> { currentWord.hints++; return currentWord.hint }
+        }
+        return ""
+    }
 }

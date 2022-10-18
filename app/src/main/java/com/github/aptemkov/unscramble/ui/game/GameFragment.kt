@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import com.github.aptemkov.unscramble.R
@@ -33,6 +34,11 @@ class GameFragment : Fragment() {
 
         binding.submit.setOnClickListener { onSubmitWord() }
         binding.skip.setOnClickListener { onSkipWord() }
+        binding.hintButton.setOnClickListener { onHintPressed() }
+    }
+
+    private fun onHintPressed() {
+        binding.textInputEditText.setText(viewModel.getHint())
     }
 
     private fun showFinalScoreDialog() {
